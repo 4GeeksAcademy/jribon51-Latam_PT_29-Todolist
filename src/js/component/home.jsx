@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+
 
 //create your first component
 const Home = () => {
+//	const [tarea, setTarea] = useState("");
+	const [tareas,setTareas]=useState([{nombre:"tarea 1"}]);
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="text-center mt-5 container">
+			<div className="input-group mb-3">
+				<div className="input-group-prepend">
+					<span className="input-group-text">Todo's</span>
+				</div>
+				<input className="form-control form-control-lg" type="text" placeholder=".form-control-lg"
+					onKeyDown={e => {
+						if (e.key === 'Enter') {
+//							setTarea(e.target.value);
+							setTareas([...tareas, {nombre:e.target.value}]);
+						}
+					}}
+				/>
+				
+			</div>
+			<div>
+					<ul>
+						{tareas.map((tarea,index)=>{
+							return (<li onClick={()=>{
+								let copiaTareas = [...tareas];
+								setTareas(copiaTareas.filter((tareaCopia,index)=>{
+									return tareaCopia.nombre!=tarea.nombre
+								}))
+							}}>{tarea.nombre}</li>);
+						})}
+					</ul>
+				</div>
 		</div>
 	);
 };
