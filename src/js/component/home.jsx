@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { renderToNodeStream } from "react-dom/server";
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { faTrash } from '@fortawesome/free-solid-svg-icons';
 //include images into your bundle
@@ -35,6 +36,7 @@ const Home = () => {
 
 	return (
 		<div className="text-center mt-5 container">
+			<h1>Todo</h1>
 			<div className="">
 				{/* <label htmlFor="todoInput" className="form-label">¡Creá tu lista de Tareas!</label> */}
 				<input
@@ -42,7 +44,7 @@ const Home = () => {
 					value={inputValue}
 					onChange={handleInputChange}
 					onKeyDown={handleEnterPress}
-					placeholder="Ingresá un toDo"
+					placeholder="Ingresa una tarea"
 					className="form-control"
 				/>
 			</div>
@@ -58,6 +60,7 @@ const Home = () => {
 					))}
 				</ul>
 			</div>
+			<h1>Cantidad de tareas: {tareas.length}</h1>
 		</div>
 	);
 };
